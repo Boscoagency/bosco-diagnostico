@@ -6,205 +6,211 @@
 <title>Diagnóstico — Flint Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --blue:#29ABE2;
-    --blue-soft:#5FC4EE;
-    --ink:#0E1214;
-    --hero:#0B0D0F;
-    --page:#ffffff;
-    --gray:#6B7280;
-    --line:#E7EAEC;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--page);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  /* Flint Consulting — Playfair Display (títulos) + Inter (cuerpo) */
+  .flint-phone { --blue:#29ABE2; --blue-soft:#5FC4EE; --mist:#DCE6EC; }
+  .flint-phone, .flint-phone * { box-sizing:border-box; margin:0; font-family:'Inter','Helvetica Neue',Arial,sans-serif; }
+  .flint-phone { display:flex; align-items:center; justify-content:center; background:transparent; padding:20px 0; }
 
-  .fd-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+  /* frame estilo Galaxy Z Flip abierto */
+  .fp-shell { position:relative; width:340px; height:716px; }
+  .fp-body { position:absolute; inset:0; border-radius:46px;
+    background:linear-gradient(160deg,#3a3f44,#111417 55%,#0b0d0f);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,.06); }
+  .fp-btn { position:absolute; background:#2b2f33; border-radius:2px; }
+  .fp-btn.r1 { right:-3px; top:150px; width:3px; height:56px; }
+  .fp-btn.r2 { right:-3px; top:216px; width:3px; height:88px; }
+  .fp-btn.l1 { left:-3px; top:190px; width:3px; height:64px; }
+  .fp-inner { position:absolute; inset:10px; border-radius:38px; background:#000; overflow:hidden; }
+  .fp-screen { position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; background:#0B0D0F; }
+  .fp-screen::-webkit-scrollbar { width:0; height:0; }
+  .fp-glow { position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(circle at 50% -10%, rgba(41,171,226,.28), transparent 55%); }
+  .fp-notch { height:34px; display:flex; align-items:center; justify-content:center; }
+  .fp-cam { width:11px; height:11px; border-radius:50%; background:#000; box-shadow:inset 0 0 0 1px rgba(255,255,255,.08); }
+  .fp-gesture { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:110px; height:4px; border-radius:2px; background:rgba(255,255,255,.35); pointer-events:none; }
 
-  /* ===== NAV ===== */
-  .fd-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:24px;}
-  .fd-logo{display:flex;align-items:center;gap:10px;}
-  .fd-logo .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;}
-  .fd-logo .mark svg{width:18px;height:18px;}
-  .fd-logo .name{font-weight:700;font-size:19px;letter-spacing:-.01em;line-height:1;}
-  .fd-logo .name small{display:block;font-size:9px;font-weight:600;letter-spacing:.22em;color:var(--gray);margin-top:3px;}
-  .fd-menu{display:flex;align-items:center;gap:26px;flex:1;justify-content:center;}
-  .fd-menu a{color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:5px;}
-  .fd-menu a svg{width:11px;height:11px;opacity:.6;}
-  .fd-nav-right{display:flex;align-items:center;gap:18px;}
-  .fd-lang{border:1px solid var(--line);border-radius:7px;padding:5px 11px;font-size:13px;font-weight:600;color:var(--ink);}
-  .fd-rfp{font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none;}
-  .fd-contact{background:var(--blue);color:#fff;font-weight:600;font-size:14.5px;padding:11px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+  .fp-content { position:relative; z-index:1; padding:0 20px;
+    opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  .fp-content.in { opacity:1; transform:translateY(0); }
 
-  /* ===== HERO ===== */
-  .fd-hero{position:relative;background:var(--hero);border-radius:22px;overflow:hidden;padding:64px 60px;margin-top:8px;
-    display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:40px;min-height:360px;}
-  .fd-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(120% 80% at 85% 0%, rgba(41,171,226,.22), transparent 55%);}
-  .fd-hero > *{position:relative;z-index:1;}
-  .fd-eyebrow{color:var(--blue);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:22px;}
-  .fd-title{font-family:'Playfair Display',serif;color:#fff;font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.01em;margin-bottom:24px;}
-  .fd-title em{font-style:italic;font-weight:700;color:var(--blue);}
-  .fd-lede{color:#B8C0C6;font-size:16px;line-height:1.6;max-width:520px;}
+  .fp-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .fp-eyebrow i { width:20px; height:2px; background:var(--blue); }
+  .fp-eyebrow span { color:var(--blue); opacity:.9; letter-spacing:.14em; text-transform:uppercase; font-weight:600; font-size:10.5px; }
+  .fp-title { font-family:'Playfair Display',serif; color:#fff; font-weight:700; font-size:28px; line-height:1.12; letter-spacing:-.01em; margin-bottom:28px; }
+  .fp-title em { font-style:italic; font-weight:700; color:var(--blue); }
 
-  .fd-ringwrap{display:flex;justify-content:center;align-items:center;}
-  .fd-ring{position:relative;width:230px;height:230px;}
-  .fd-ring svg{transform:rotate(-90deg);width:230px;height:230px;}
-  .fd-ring .fg{stroke-dasharray:597;stroke-dashoffset:597;transition:stroke-dashoffset 1.7s cubic-bezier(.2,.8,.2,1);}
-  .fd-ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-  .fd-score{font-family:'Playfair Display',serif;color:#fff;font-weight:700;font-size:72px;line-height:1;letter-spacing:-.02em;}
-  .fd-of{color:var(--blue);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;}
+  .fp-ringwrap { display:flex; justify-content:center; margin-bottom:36px; }
+  .fp-ring { position:relative; width:160px; height:160px; }
+  .fp-ring svg { transform:rotate(-90deg); width:160px; height:160px; }
+  .fp-ring .fg { stroke-dasharray:596.9; stroke-dashoffset:596.9; transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1); }
+  .fp-ring .center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .fp-score { font-family:'Playfair Display',serif; color:#fff; font-weight:700; font-size:46px; line-height:1; letter-spacing:-.02em; }
+  .fp-of { color:var(--blue); opacity:.85; font-weight:600; font-size:10px; letter-spacing:.14em; text-transform:uppercase; margin-top:6px; }
 
-  /* ===== PILARES ===== */
-  .fd-panel{border:1px solid var(--line);border-radius:22px;padding:48px 56px;margin-top:26px;margin-bottom:60px;}
-  .fd-panel h2{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;letter-spacing:-.01em;margin-bottom:34px;}
+  .fp-bars { display:flex; flex-direction:column; gap:16px; margin-bottom:32px; }
+  .fp-bar-head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+  .fp-bar-name { color:#fff; font-weight:500; font-size:13.5px; }
+  .fp-bar-val { font-family:'Playfair Display',serif; color:#fff; font-weight:600; font-size:16px; }
+  .fp-bar-val small { font-family:'Inter',sans-serif; color:var(--mist); opacity:.6; font-weight:400; font-size:11px; margin-left:1px; }
+  .fp-track { width:100%; height:7px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; }
+  .fp-fill { height:100%; border-radius:999px; width:0%; transition:width 1.2s cubic-bezier(.2,.8,.2,1); }
 
-  .fd-bar{padding:20px 0;border-top:1px solid var(--line);}
-  .fd-bar:first-of-type{border-top:none;padding-top:0;}
-  .fd-bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
-  .fd-bar-name{font-weight:600;font-size:16px;}
-  .fd-bar-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;}
-  .fd-bar-val small{font-family:'Inter',sans-serif;font-size:13px;color:var(--gray);font-weight:500;margin-left:2px;}
-  .fd-track{width:100%;height:8px;background:#EEF1F3;border-radius:999px;overflow:hidden;}
-  .fd-fill{height:100%;border-radius:999px;width:0%;background:linear-gradient(90deg,#2C3E46,var(--blue));transition:width 1.2s cubic-bezier(.2,.8,.2,1);}
-  .fd-fill.strong{background:linear-gradient(90deg,#2C3E46,var(--blue-soft));}
-  .fd-bar-note{color:var(--gray);font-size:14px;margin-top:11px;}
+  .fp-cards { display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+  .fp-card { background:rgba(255,255,255,.04); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:18px;
+    opacity:0; transform:translateY(16px); transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+  .fp-card.in { opacity:1; transform:translateY(0); }
+  .fp-card.prio { border-left:3px solid var(--blue); }
+  .fp-card.stre { border-left:3px solid var(--blue-soft); }
+  .fp-card h4 { font-family:'Playfair Display',serif; color:#fff; font-weight:700; font-size:16px; margin-bottom:12px; }
+  .fp-item { display:flex; gap:10px; margin-bottom:10px; align-items:flex-start; }
+  .fp-item span.n { flex:0 0 auto; width:19px; height:19px; border-radius:50%; font-weight:700; font-size:10.5px;
+    display:flex; align-items:center; justify-content:center; }
+  .fp-card.prio .n { background:rgba(41,171,226,.18); color:var(--blue); }
+  .fp-card.stre .n { background:rgba(95,196,238,.22); color:var(--blue-soft); }
+  .fp-item p { color:var(--mist); opacity:.85; font-size:12.5px; line-height:1.5; }
 
-  .fd-ctawrap{display:flex;justify-content:center;margin-top:8px;padding-bottom:60px;}
-  .fd-cta{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:15px 30px;border-radius:999px;text-decoration:none;transition:opacity .2s ease;}
-  .fd-cta:hover{opacity:.88;}
-
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);}
-  .reveal.in{opacity:1;transform:translateY(0);}
-
-  @media(max-width:900px){
-    .fd-menu,.fd-rfp{display:none;}
-    .fd-hero{grid-template-columns:1fr;padding:44px 30px;text-align:left;}
-    .fd-title{font-size:40px;}
-    .fd-ringwrap{justify-content:flex-start;margin-top:12px;}
-    .fd-panel{padding:34px 26px;}
-  }
+  .fp-ctawrap { display:flex; justify-content:center; padding-bottom:28px; }
+  .fp-cta { display:inline-flex; align-items:center; gap:8px; background:var(--blue); color:#fff; font-weight:600; font-size:13.5px;
+    padding:13px 22px; border-radius:999px; text-decoration:none; transition:opacity .2s ease; }
+  .fp-cta:hover { opacity:.85; }
 </style>
 </head>
 <body>
 
-<div class="fd-wrap">
+<div class="flint-phone">
+  <div class="fp-shell">
+    <div class="fp-body"></div>
+    <div class="fp-btn r1"></div>
+    <div class="fp-btn r2"></div>
+    <div class="fp-btn l1"></div>
 
-  <!-- NAV -->
-  <nav class="fd-nav">
-    <div class="fd-logo">
-      <span class="mark">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L18 20 L12 15 L6 20 Z" fill="#fff"/></svg>
-      </span>
-      <span class="name">FLINT<small>CONSULTING</small></span>
-    </div>
-    <div class="fd-menu">
-      <a href="#">Nosotros <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
-      <a href="#">Servicios <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
-      <a href="#">Clientes</a>
-      <a href="#">Insights <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
-      <a href="#">Carreras <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
-    </div>
-    <div class="fd-nav-right">
-      <span class="fd-lang">ES</span>
-      <a href="#" class="fd-rfp">RFP</a>
-      <a href="#" class="fd-contact">Contáctanos</a>
-    </div>
-  </nav>
+    <div class="fp-inner">
+      <div class="fp-screen" id="fpScreen">
+        <div class="fp-glow"></div>
+        <div class="fp-notch"><div class="fp-cam"></div></div>
 
-  <!-- HERO -->
-  <section class="fd-hero">
-    <div class="fd-hero-copy reveal" id="heroCopy">
-      <div class="fd-eyebrow">Tu diagnóstico</div>
-      <h1 class="fd-title">Tus finanzas necesitan <em>optimización</em></h1>
-      <p class="fd-lede">Tienes piezas sólidas, pero también brechas que limitan tu visibilidad y capacidad de decisión. Con dirección estratégica enfocada en 2 o 3 áreas críticas, puedes desbloquear control, rentabilidad y crecimiento sostenible.</p>
-    </div>
-    <div class="fd-ringwrap">
-      <div class="fd-ring">
-        <svg viewBox="0 0 220 220">
-          <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9"/>
-          <circle class="fg" cx="110" cy="110" r="95" fill="none" stroke="#29ABE2" stroke-width="9" stroke-linecap="round"/>
-        </svg>
-        <div class="center">
-          <div class="fd-score" id="fdScore">0</div>
-          <div class="fd-of">de 100</div>
+        <div class="fp-content" id="fpContent">
+          <div class="fp-eyebrow"><i></i><span>Tu diagnóstico</span></div>
+          <h2 class="fp-title">Tus finanzas necesitan <em>optimización</em></h2>
+
+          <div class="fp-ringwrap">
+            <div class="fp-ring">
+              <svg viewBox="0 0 220 220">
+                <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="10"></circle>
+                <circle class="fg" cx="110" cy="110" r="95" fill="none" stroke="#29ABE2" stroke-width="10" stroke-linecap="round"></circle>
+              </svg>
+              <div class="center">
+                <div class="fp-score" id="fpScore">0</div>
+                <div class="fp-of">de 100</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fp-bars" id="fpBars"></div>
+
+          <div class="fp-cards">
+            <div class="fp-card prio" id="fpPrio">
+              <h4>Prioridades estratégicas</h4>
+              <div class="fp-item"><span class="n">1</span><p>Fortalecer los controles y la visibilidad financiera para decidir a tiempo.</p></div>
+              <div class="fp-item"><span class="n">2</span><p>Optimizar liquidez y estructura de capital para liberar rentabilidad.</p></div>
+              <div class="fp-item"><span class="n">3</span><p>Conectar la medición financiera con las decisiones de crecimiento.</p></div>
+            </div>
+            <div class="fp-card stre" id="fpStre">
+              <h4>Fortalezas</h4>
+              <div class="fp-item"><span class="n">1</span><p>Rentabilidad y performance sólidas: una base ejecutiva real.</p></div>
+              <div class="fp-item"><span class="n">2</span><p>Estructura operativa funcional sobre la cual construir.</p></div>
+            </div>
+          </div>
+
+          <div class="fp-ctawrap">
+            <a class="fp-cta" href="#">Agenda con un experto <span>→</span></a>
+          </div>
         </div>
+
+        <div class="fp-gesture"></div>
       </div>
     </div>
-  </section>
-
-  <!-- PILARES -->
-  <section class="fd-panel">
-    <h2>Score por pilar</h2>
-    <div id="fdBars"></div>
-  </section>
-
-  <div class="fd-ctawrap">
-    <a href="#" class="fd-cta">Agenda con un experto <span>→</span></a>
   </div>
-
 </div>
 
 <script>
-(function(){
+(function () {
   var TARGET = 68;
   var pillars = [
-    { name:'Control y Cumplimiento',     val:'3.0', pct:60, note:'Funcional pero con áreas claras de mejora.' },
-    { name:'Liquidez y Tesorería',       val:'3.3', pct:66, note:'Funcional pero con áreas claras de mejora.' },
-    { name:'Rentabilidad y Performance', val:'4.0', pct:80, note:'Fortaleza ejecutiva. Mantenla y construye desde ahí.' },
-    { name:'Planeación y Presupuesto',   val:'3.7', pct:74, note:'Funcional pero con áreas claras de mejora.' },
-    { name:'Estructura de Capital',      val:'3.7', pct:74, note:'Funcional pero con áreas claras de mejora.' }
+    { name:'Control y Cumplimiento',     value:'3.0', pct:60 },
+    { name:'Liquidez y Tesorería',       value:'3.3', pct:66 },
+    { name:'Rentabilidad y Performance', value:'4.0', pct:80 },
+    { name:'Planeación y Presupuesto',   value:'3.7', pct:74 },
+    { name:'Estructura de Capital',      value:'3.7', pct:74 }
   ];
 
-  var barsEl = document.getElementById('fdBars');
+  var barsEl = document.getElementById('fpBars');
   var fills = [];
-  pillars.forEach(function(p){
+  pillars.forEach(function (p) {
+    var grad = p.pct >= 78 ? 'linear-gradient(90deg,#2C3E46,#5FC4EE)'
+                           : 'linear-gradient(90deg,#2C3E46,#29ABE2)';
     var row = document.createElement('div');
-    row.className = 'fd-bar reveal';
     row.innerHTML =
-      '<div class="fd-bar-head"><span class="fd-bar-name">'+p.name+'</span>'+
-      '<span class="fd-bar-val">'+p.val+'<small>/ 5</small></span></div>'+
-      '<div class="fd-track"><div class="fd-fill'+(p.pct>=78?' strong':'')+'"></div></div>'+
-      '<div class="fd-bar-note">'+p.note+'</div>';
+      '<div class="fp-bar-head"><span class="fp-bar-name">' + p.name +
+      '</span><span class="fp-bar-val">' + p.value + '<small>/ 5</small></span></div>' +
+      '<div class="fp-track"><div class="fp-fill"></div></div>';
+    var fill = row.querySelector('.fp-fill');
+    fill.style.background = grad;
+    fills.push({ el: fill, pct: p.pct });
     barsEl.appendChild(row);
-    fills.push({ el: row.querySelector('.fd-fill'), pct: p.pct, row: row });
   });
 
-  var ringEl = document.querySelector('.fd-ring .fg');
-  var scoreEl = document.getElementById('fdScore');
+  var contentEl = document.getElementById('fpContent');
+  var ringEl = document.querySelector('.fp-ring .fg');
+  var scoreEl = document.getElementById('fpScore');
   var CIRC = 2 * Math.PI * 95;
   ringEl.style.strokeDasharray = CIRC;
   ringEl.style.strokeDashoffset = CIRC;
 
   var played = false;
-  function play(){
-    if(played) return; played = true;
+  function play() {
+    if (played) return; played = true;
 
-    document.getElementById('heroCopy').classList.add('in');
+    setTimeout(function () { contentEl.classList.add('in'); }, 0);
 
-    setTimeout(function(){
-      ringEl.style.strokeDashoffset = CIRC * (1 - TARGET/100);
+    setTimeout(function () {
+      ringEl.style.strokeDashoffset = CIRC * (1 - TARGET / 100);
       var n = 0;
-      (function step(){ n++; scoreEl.textContent = Math.min(n,TARGET); if(n<TARGET) setTimeout(step,20); })();
-    },150);
+      (function step() {
+        n++; scoreEl.textContent = Math.min(n, TARGET);
+        if (n < TARGET) setTimeout(step, 20);
+      })();
+    }, 100);
 
-    fills.forEach(function(f,i){
-      setTimeout(function(){
-        f.row.classList.add('in');
+    setTimeout(function () {
+      fills.forEach(function (f, i) {
+        f.el.style.transitionDelay = (i * 120) + 'ms';
         f.el.style.width = f.pct + '%';
-      }, 400 + i*140);
-    });
+      });
+    }, 300);
+
+    setTimeout(function () {
+      document.getElementById('fpPrio').classList.add('in');
+    }, 1900);
+    setTimeout(function () {
+      document.getElementById('fpStre').classList.add('in');
+    }, 2050);
   }
 
-  var target = document.querySelector('.fd-hero');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } });
-    }, { threshold:0.25 });
+  var target = document.querySelector('.flint-phone');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { play(); io.disconnect(); }
+      });
+    }, { threshold: 0.2 });
     io.observe(target);
-  } else { play(); }
+  } else {
+    play();
+  }
 })();
 </script>
 
