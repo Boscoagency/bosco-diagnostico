@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico — Flint Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#29ABE2;
+    --blue-soft:#5FC4EE;
+    --ink:#0E1214;
+    --hero:#0B0D0F;
+    --page:#ffffff;
+    --gray:#6B7280;
+    --line:#E7EAEC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--page);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+
+  .fd-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+  /* ===== NAV ===== */
+  .fd-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:24px;}
+  .fd-logo{display:flex;align-items:center;gap:10px;}
+  .fd-logo .mark{width:38px;height:38px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;}
+  .fd-logo .mark svg{width:18px;height:18px;}
+  .fd-logo .name{font-weight:700;font-size:19px;letter-spacing:-.01em;line-height:1;}
+  .fd-logo .name small{display:block;font-size:9px;font-weight:600;letter-spacing:.22em;color:var(--gray);margin-top:3px;}
+  .fd-menu{display:flex;align-items:center;gap:26px;flex:1;justify-content:center;}
+  .fd-menu a{color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;display:flex;align-items:center;gap:5px;}
+  .fd-menu a svg{width:11px;height:11px;opacity:.6;}
+  .fd-nav-right{display:flex;align-items:center;gap:18px;}
+  .fd-lang{border:1px solid var(--line);border-radius:7px;padding:5px 11px;font-size:13px;font-weight:600;color:var(--ink);}
+  .fd-rfp{font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none;}
+  .fd-contact{background:var(--blue);color:#fff;font-weight:600;font-size:14.5px;padding:11px 22px;border-radius:999px;text-decoration:none;white-space:nowrap;}
+
+  /* ===== HERO ===== */
+  .fd-hero{position:relative;background:var(--hero);border-radius:22px;overflow:hidden;padding:64px 60px;margin-top:8px;
+    display:grid;grid-template-columns:1.4fr 1fr;align-items:center;gap:40px;min-height:360px;}
+  .fd-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 85% 0%, rgba(41,171,226,.22), transparent 55%);}
+  .fd-hero > *{position:relative;z-index:1;}
+  .fd-eyebrow{color:var(--blue);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:22px;}
+  .fd-title{font-family:'Playfair Display',serif;color:#fff;font-weight:800;font-size:56px;line-height:1.05;letter-spacing:-.01em;margin-bottom:24px;}
+  .fd-title em{font-style:italic;font-weight:700;color:var(--blue);}
+  .fd-lede{color:#B8C0C6;font-size:16px;line-height:1.6;max-width:520px;}
+
+  .fd-ringwrap{display:flex;justify-content:center;align-items:center;}
+  .fd-ring{position:relative;width:230px;height:230px;}
+  .fd-ring svg{transform:rotate(-90deg);width:230px;height:230px;}
+  .fd-ring .fg{stroke-dasharray:597;stroke-dashoffset:597;transition:stroke-dashoffset 1.7s cubic-bezier(.2,.8,.2,1);}
+  .fd-ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .fd-score{font-family:'Playfair Display',serif;color:#fff;font-weight:700;font-size:72px;line-height:1;letter-spacing:-.02em;}
+  .fd-of{color:var(--blue);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;}
+
+  /* ===== PILARES ===== */
+  .fd-panel{border:1px solid var(--line);border-radius:22px;padding:48px 56px;margin-top:26px;margin-bottom:60px;}
+  .fd-panel h2{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;letter-spacing:-.01em;margin-bottom:34px;}
+
+  .fd-bar{padding:20px 0;border-top:1px solid var(--line);}
+  .fd-bar:first-of-type{border-top:none;padding-top:0;}
+  .fd-bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+  .fd-bar-name{font-weight:600;font-size:16px;}
+  .fd-bar-val{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;}
+  .fd-bar-val small{font-family:'Inter',sans-serif;font-size:13px;color:var(--gray);font-weight:500;margin-left:2px;}
+  .fd-track{width:100%;height:8px;background:#EEF1F3;border-radius:999px;overflow:hidden;}
+  .fd-fill{height:100%;border-radius:999px;width:0%;background:linear-gradient(90deg,#2C3E46,var(--blue));transition:width 1.2s cubic-bezier(.2,.8,.2,1);}
+  .fd-fill.strong{background:linear-gradient(90deg,#2C3E46,var(--blue-soft));}
+  .fd-bar-note{color:var(--gray);font-size:14px;margin-top:11px;}
+
+  .fd-ctawrap{display:flex;justify-content:center;margin-top:8px;padding-bottom:60px;}
+  .fd-cta{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:#fff;font-weight:600;font-size:15px;padding:15px 30px;border-radius:999px;text-decoration:none;transition:opacity .2s ease;}
+  .fd-cta:hover{opacity:.88;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    .fd-menu,.fd-rfp{display:none;}
+    .fd-hero{grid-template-columns:1fr;padding:44px 30px;text-align:left;}
+    .fd-title{font-size:40px;}
+    .fd-ringwrap{justify-content:flex-start;margin-top:12px;}
+    .fd-panel{padding:34px 26px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="fd-wrap">
+
+  <!-- NAV -->
+  <nav class="fd-nav">
+    <div class="fd-logo">
+      <span class="mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L18 20 L12 15 L6 20 Z" fill="#fff"/></svg>
+      </span>
+      <span class="name">FLINT<small>CONSULTING</small></span>
+    </div>
+    <div class="fd-menu">
+      <a href="#">Nosotros <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a href="#">Servicios <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a href="#">Clientes</a>
+      <a href="#">Insights <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      <a href="#">Carreras <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    </div>
+    <div class="fd-nav-right">
+      <span class="fd-lang">ES</span>
+      <a href="#" class="fd-rfp">RFP</a>
+      <a href="#" class="fd-contact">Contáctanos</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="fd-hero">
+    <div class="fd-hero-copy reveal" id="heroCopy">
+      <div class="fd-eyebrow">Tu diagnóstico</div>
+      <h1 class="fd-title">Tus finanzas necesitan <em>optimización</em></h1>
+      <p class="fd-lede">Tienes piezas sólidas, pero también brechas que limitan tu visibilidad y capacidad de decisión. Con dirección estratégica enfocada en 2 o 3 áreas críticas, puedes desbloquear control, rentabilidad y crecimiento sostenible.</p>
+    </div>
+    <div class="fd-ringwrap">
+      <div class="fd-ring">
+        <svg viewBox="0 0 220 220">
+          <circle cx="110" cy="110" r="95" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9"/>
+          <circle class="fg" cx="110" cy="110" r="95" fill="none" stroke="#29ABE2" stroke-width="9" stroke-linecap="round"/>
+        </svg>
+        <div class="center">
+          <div class="fd-score" id="fdScore">0</div>
+          <div class="fd-of">de 100</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section class="fd-panel">
+    <h2>Score por pilar</h2>
+    <div id="fdBars"></div>
+  </section>
+
+  <div class="fd-ctawrap">
+    <a href="#" class="fd-cta">Agenda con un experto <span>→</span></a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var TARGET = 68;
+  var pillars = [
+    { name:'Control y Cumplimiento',     val:'3.0', pct:60, note:'Funcional pero con áreas claras de mejora.' },
+    { name:'Liquidez y Tesorería',       val:'3.3', pct:66, note:'Funcional pero con áreas claras de mejora.' },
+    { name:'Rentabilidad y Performance', val:'4.0', pct:80, note:'Fortaleza ejecutiva. Mantenla y construye desde ahí.' },
+    { name:'Planeación y Presupuesto',   val:'3.7', pct:74, note:'Funcional pero con áreas claras de mejora.' },
+    { name:'Estructura de Capital',      val:'3.7', pct:74, note:'Funcional pero con áreas claras de mejora.' }
+  ];
+
+  var barsEl = document.getElementById('fdBars');
+  var fills = [];
+  pillars.forEach(function(p){
+    var row = document.createElement('div');
+    row.className = 'fd-bar reveal';
+    row.innerHTML =
+      '<div class="fd-bar-head"><span class="fd-bar-name">'+p.name+'</span>'+
+      '<span class="fd-bar-val">'+p.val+'<small>/ 5</small></span></div>'+
+      '<div class="fd-track"><div class="fd-fill'+(p.pct>=78?' strong':'')+'"></div></div>'+
+      '<div class="fd-bar-note">'+p.note+'</div>';
+    barsEl.appendChild(row);
+    fills.push({ el: row.querySelector('.fd-fill'), pct: p.pct, row: row });
+  });
+
+  var ringEl = document.querySelector('.fd-ring .fg');
+  var scoreEl = document.getElementById('fdScore');
+  var CIRC = 2 * Math.PI * 95;
+  ringEl.style.strokeDasharray = CIRC;
+  ringEl.style.strokeDashoffset = CIRC;
+
+  var played = false;
+  function play(){
+    if(played) return; played = true;
+
+    document.getElementById('heroCopy').classList.add('in');
+
+    setTimeout(function(){
+      ringEl.style.strokeDashoffset = CIRC * (1 - TARGET/100);
+      var n = 0;
+      (function step(){ n++; scoreEl.textContent = Math.min(n,TARGET); if(n<TARGET) setTimeout(step,20); })();
+    },150);
+
+    fills.forEach(function(f,i){
+      setTimeout(function(){
+        f.row.classList.add('in');
+        f.el.style.width = f.pct + '%';
+      }, 400 + i*140);
+    });
+  }
+
+  var target = document.querySelector('.fd-hero');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ play(); io.disconnect(); } });
+    }, { threshold:0.25 });
+    io.observe(target);
+  } else { play(); }
+})();
+</script>
+
+</body>
+</html>
