@@ -206,11 +206,13 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { play(); io.disconnect(); }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.15 });
     io.observe(target);
-  } else {
-    play();
   }
+
+  // Respaldo: si el observer no dispara (iframe, sin scroll, etc.), reproduce igual.
+  window.addEventListener('load', function () { setTimeout(play, 600); });
+  setTimeout(play, 1500);
 })();
 </script>
 
